@@ -1,28 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Details</title>
-    <link rel="stylesheet" href="detail.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Projects</title>
+  <link rel="stylesheet" href="projects.css">
 </head>
 <body>
-    <header>
-        <h1>Details</h1>
-    </header>
-    
-<div class="bg">
-    <section class="details">
-        <div class="container">
-            <h2>Welcome to my <span>Portfolio</span>!</h2>
-            <p>I am passionate about web development and design. With several years of experience, I specialize in creating user-friendly and visually appealing websites.</p>
-            <p>My skills include <span>HTML</span>, <span>CSS</span>, <span>JavaScript</span>, and various web development frameworks. I am constantly learning and adapting to new technologies to stay ahead in this ever-evolving field.</p>
-            <p>Feel free to explore my projects and get in touch if you're interested in collaborating or hiring me for your next project!</p>
+  <header>
+    <h1>My Projects</h1>
+  </header>
+  <div class="container">
+    <div class="project">
+      <a href="Projects/calculator.css">
+        <img src="Projects/Project Images/Calculator.png" alt="Calculator">
+        <div class="project-content">
+          <h3>Scientific Calculator</h3>
+          <p>This is a scientific calculator web application. It includes a header with the title "Calculator" and a section containing the calculator interface. The interface consists of a text input field for displaying the calculations and a series of buttons for inputting numbers, operators, and commands.
+            <br>
+            The calculator supports basic arithmetic operations (+, -, *, /), square root (√), exponentiation (x^2), backspace, and clearing the display. The calculation is performed using JavaScript's eval() function, which evaluates the expression entered in the display field.</p>
         </div>
-        <div class="image-container">
-            <img src="images/main.jpeg" alt="Portfolio Image">
+      </a>
+    </div>
+    <div class="project">
+      <a href="Projects/hamburger.html">
+        <img src="Projects/Project Images/Hamburger.png" alt="Hamburger">
+        <div class="project-content">
+          <h3>Hamburger Menu</h3>
+          <p>This is a webpage that includes a hamburger menu for navigation and a grid of images.
+            <br>
+            The hamburger menu is a popular UI pattern used in responsive web design to toggle a navigation menu on and off for smaller screen sizes. When clicked, it reveals a set of links for navigation. In this code, the hamburger menu is implemented using a checkbox input element and spans styled to resemble the three lines typically associated with the hamburger icon.</p>
         </div>
-    </section>
-</div>
+      </a>
+    </div>
+    <div class="project">
+      <a href="Projects/clock.html">
+        <img src="Projects/Project Images/Clock.png" alt="Clock">
+        <div class="project-content">
+          <h3>Digital Clock</h3>
+          <p>This webpage displaying a real-time clock with an option to toggle between light mode and dark mode. <br>
+            The clock itself is displayed in a div element with the id "clock". JavaScript code is used to update the clock's display every second using the setInterval function.
+            <br>
+            Below the clock, there's a mode toggle feature implemented using a checkbox input element. When toggled, it changes the background color of the page to simulate switching between light mode and dark mode. The text of the mode toggle button changes accordingly to reflect the current mode.</p>
+        </div>
+      </a>
+    </div>
+    <div class="project">
+      <a href="Projects/">
+        <img src="project2-thumbnail.jpg" alt="Project 2">
+        <div class="project-content">
+          <h3>Project 2</h3>
+          <p>Description of Project 2</p>
+        </div>
+      </a>
+    </div>
+    <!-- Add more projects as needed -->
+  </div>
 </body>
 </html>

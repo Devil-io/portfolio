@@ -1,0 +1,48 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    text-align: center;
+    transition: background-color 0.4s, color 0.4s;
+}
+
+.container {
+    margin-top: 100px;
+}
+
+.clock {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.mode-toggle {
+    margin-top: 20px;
+}
+
+.toggle-label {
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.toggle-label input {
+    display: none;
+}
+
+.toggle-label span {
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.toggle-label input:checked + span {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Dark mode styles */
+.dark-mode {
+    background-color: #212121;
+    color: #fff;
+}

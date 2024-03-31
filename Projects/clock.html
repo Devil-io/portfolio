@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Clock</title>
+    <link rel="stylesheet" href="clock.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Real-Time Clock</h1>
+        <div class="clock" id="clock"></div>
+        <div class="mode-toggle">
+            <label class="toggle-label">
+                <input type="checkbox" id="modeToggle">
+                <span id="modeText">Light Mode</span>
+            </label>
+        </div>
+    </div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        function toggleMode() {
+            const modeToggle = document.getElementById('modeToggle');
+            const modeText = document.getElementById('modeText');
+            const body = document.body;
+            
+            if (modeToggle.checked) {
+                body.classList.add('dark-mode');
+                modeText.textContent = 'Dark Mode';
+            } else {
+                body.classList.remove('dark-mode');
+                modeText.textContent = 'Light Mode';
+            }
+        }
+
+        setInterval(updateTime, 1000);
+        document.getElementById('modeToggle').addEventListener('change', toggleMode);
+    </script>
+</body>
+</html>

@@ -1,3 +1,4 @@
+/* General Styles */
 body {
   font-family: 'Times New Roman', Times, serif;
   margin: 0;
@@ -6,7 +7,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 100vh;
-  color: #fff;
+  color: #000000;
 }
 
 header {
@@ -16,38 +17,42 @@ header {
 }
 
 .container {
-  max-width: 90%;
+  width: 90%;
+  max-width: 1200px; /* Adjust max-width as needed */
   margin: auto;
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.711);
+  background-color: rgba(0, 0, 0, 0.052);
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.529);
   margin-top: 20px;
 }
 
+/* Typography */
 h1 {
   margin: 0;
-  font-size: 2em;
-  color: #fff;
-}
-
-.line {
-  width: 100%;
-  border-bottom: 2px solid #fff;
-  margin: 20px auto;
+  font-size: 2.8em;
+  color: #ffffff;
+  padding: 10px;
+  filter: drop-shadow(0 0 10px rgb(246, 239, 239));
 }
 
 .heading {
-  font-size: 1.1em;
+  font-size: 1.8em;
   font-weight: bold;
-  color: #fff;
+  color: #000000;
+  filter: drop-shadow(0 0 10px rgb(246, 239, 239));
 }
 
 .content {
-  font-size: 1em;
+  font-size: 1.5em;
   margin-bottom: 10px;
 }
 
+h2 {
+  font-size: 2em;
+}
+
+/* Lists */
 ul {
   list-style-type: none;
   padding: 0;
@@ -58,22 +63,24 @@ li {
   list-style: disc;
 }
 
+/* Animation */
+.content,
+.heading,
+ul,
+li,
 .last {
-  font-size: 0.9em;
-  font-style: italic;
-}
-
-.content, .heading, ul, li, .last {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.content, .heading {
+.content,
+.heading {
   animation: fadeInUp 0.6s forwards;
 }
 
-ul, li, .last {
+ul,
+li {
   animation: fadeInUp 0.6s forwards 0.4s;
 }
 
@@ -84,29 +91,44 @@ ul, li, .last {
   }
 }
 
-li, p{
-  transition: color 0.5s;
+li,
+p {
+  transition: color 0.5s all ease;
 }
 
-li:hover, p:hover {
-  color: aqua;
+li:hover,
+p:hover {
+  color: rgb(0, 225, 255);
 }
 
+/* Media Queries */
 @media only screen and (max-width: 768px) {
   .container {
+      width: 95%;
       padding: 10px;
   }
 
-  .cv {
-      padding: 10px 0;
+  h1 {
+      font-size: 2em;
   }
 
-  .image-container {
-      width: 100%;
-      max-width: none;
+  .heading {
+      font-size: 1.5em;
   }
 
-  h2, h3 {
-      text-align: center;
+  .content {
+      font-size: 1.2em;
+  }
+
+  h2 {
+      font-size: 1.8em;
+  }
+
+  ul {
+      margin-left: 20px;
+  }
+  
+  p, li {
+      font-size: 1em;
   }
 }
