@@ -23,10 +23,18 @@
     <div class="calculator">
         <input type="text" id="display" readonly>
         <div class="buttons">
-            <button onclick="clearDisplay()">C</button>
-            <button onclick="backspace()">Back</button>
-            <button onclick="appendToDisplay('**')">x^2</button>
-            <button onclick="appendToDisplay('√')">√</button>
+            <button class="orange" onclick="clearDisplay()">C</button>
+            <button class="orange" onclick="backspace()">Back</button>
+            <button onclick="appendToDisplay('(')">(</button>
+            <button onclick="appendToDisplay(')')">)</button>
+            <button class="green" onclick="appendToDisplay('sin(')">sin</button>
+            <button class="green" onclick="appendToDisplay('cos(')">cos</button>
+            <button class="green" onclick="appendToDisplay('tan(')">tan</button>
+            <button class="green" onclick="appendToDisplay('cosec(')">cosec</button>
+            <button class="green" onclick="appendToDisplay('sec(')">sec</button>
+            <button class="green" onclick="appendToDisplay('cot(')">cot</button>
+            <button onclick="appendToDisplay('^')">x^2</button>
+            <button onclick="appendToDisplay('√(')">√</button>
             <button onclick="appendToDisplay('/')">/</button>
             <button onclick="appendToDisplay('7')">7</button>
             <button onclick="appendToDisplay('8')">8</button>
@@ -42,35 +50,99 @@
             <button onclick="appendToDisplay('+')">+</button>
             <button onclick="appendToDisplay('0')">0</button>
             <button onclick="appendToDisplay('.')">.</button>
-            <button onclick="calculate()">=</button>
+            <button class="orange" onclick="calculate()">=</button>
         </div>
     </div>
 </section>
+<footer>
+    <div id="history">
+        <h2>Calculation History</h2>
+        <ul id="calculation-history"></ul>
+    </div>
+</footer>
 
 
-    <script>
-    function appendToDisplay(value) {
+<script>
+let calculationHistory = [];
+
+function appendToDisplay(value) {
     document.getElementById('display').value += value;
-    }
+}
 
-    function clearDisplay() {
+function clearDisplay() {
     document.getElementById('display').value = '';
-    }
+}
 
-    function backspace() {
+function backspace() {
     const displayValue = document.getElementById('display').value;
     document.getElementById('display').value = displayValue.slice(0, -1);
-    }
+}
 
-    function calculate() {
+function calculate() {
     try {
-        const expression = document.getElementById('display').value.replace("√", "Math.sqrt(") + ")";
+        let expression = document.getElementById('display').value;
+        let originalExpression = expression; // Store the original expression for history
+
+        // Add missing closing brackets
+        let openBrackets = (expression.match(/\(/g) || []).length;
+        let closedBrackets = (expression.match(/\)/g) || []).length;
+        let missingBrackets = openBrackets - closedBrackets;
+
+        if (missingBrackets > 0) {
+            for (let i = 0; i < missingBrackets; i++) {
+                expression += ')';
+            }
+        }
+
+        expression = expression.replace(/√\(([^)]+)\)/g, "Math.sqrt($1)");
+        expression = expression.replace(/sin\(([^)]+)\)/g, "Math.sin(deg2rad($1))");
+        expression = expression.replace(/cos\(([^)]+)\)/g, "Math.cos(deg2rad($1))");
+        expression = expression.replace(/tan\(([^)]+)\)/g, "Math.tan(deg2rad($1))");
+        expression = expression.replace(/cosec\(([^)]+)\)/g, "1/Math.sin(deg2rad($1))");
+        expression = expression.replace(/sec\(([^)]+)\)/g, "1/Math.cos(deg2rad($1))");
+        expression = expression.replace(/cot\(([^)]+)\)/g, "1/Math.tan(deg2rad($1))");
+        expression = expression.replace(/\^/g, "**");
+        
         const result = eval(expression);
         document.getElementById('display').value = result;
-        } catch (error) {
+
+        // Add the calculation to history with original expression
+        calculationHistory.push({ expression: originalExpression, result: result });
+        updateHistory();
+    } catch (error) {
         document.getElementById('display').value = 'Error';
-        }
+        alert("Invalid expression or operation");
     }
+}
+
+function updateHistory() {
+    const historyList = document.getElementById('calculation-history');
+    historyList.innerHTML = '';
+
+    calculationHistory.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${replaceFunctionsAndOperators(item.expression)} = ${item.result}`;
+        historyList.appendChild(li);
+    });
+}
+
+function replaceFunctionsAndOperators(expression) {
+    // Function and operator replacements
+    expression = expression.replace("√(", "√(");
+    expression = expression.replace("sin(", "sin(");
+    expression = expression.replace("cos(", "cos(");
+    expression = expression.replace("tan(", "tan(");
+    expression = expression.replace("cosec(", "1/sin(");
+    expression = expression.replace("sec(", "1/cos(");
+    expression = expression.replace("cot(", "1/tan(");
+    expression = expression.replace("^", "^");
+    return expression;
+}
+
+function deg2rad(degrees) {
+    return degrees * Math.PI / 180;
+}
     </script>
+    
 </body>
 </html>
